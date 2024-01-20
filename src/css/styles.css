@@ -105,6 +105,26 @@
   transform: scale(1.04);
 }
 
+.sl-wrapper {
+  background-color: rgba(46, 47, 66, 0.8);
+}
+
+.sl-wrapper .sl-image .sl-caption {
+  text-align: center;
+}
+
+.sl-wrapper .sl-close {
+  color: #fff;
+}
+
+.sl-wrapper .sl-counter {
+  color: #fff;
+}
+
+.sl-wrapper .sl-navigation button {
+  color: #fff;
+}
+
 .loader {
   transform: rotateZ(45deg);
   perspective: 1000px;
