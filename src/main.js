@@ -20,14 +20,21 @@ function imageSearch(e) {
 
   console.log(searchTerm);
   getImages(searchTerm)
-    .then((images) => {
-        console.log(images);
-        if (images = {}) {
-            errMessage();
-        } else {
-            
+    .then(images => {
+      console.log(images.hits);
+      if ((images.hits == 0)) {
+        noFoundMessage();
+      } else {
+        let markup = '';
+        for (const image of images.hits) {
+          markup += createMarkup(image);
         }
+        gallery.innerHTML = markup;
+        const lightbox = new SimpleLightbox('.gallery a');
+        lightbox.refresh();
+      }
     })
+    .catch(errorMessage())
     .finally(() => form.reset());
 }
 
@@ -49,14 +56,49 @@ function getImages(searchTerm) {
   });
 }
 
-function errMessage() {
-    iziToast.show({
-      position: 'topRight',
-      messageColor: 'white',
-      iconUrl: 'error.svg',
-      iconColor: 'white',
-      color: '#EF4040',
-      message: 'Sorry, there are no images matching your search query. Please try again!',
-    });
-    loader.classList.remove('is-visible');
-  };
+function createMarkup({
+  webformatURL,
+  largeImageURL,
+  tags,
+  likes,
+  views,
+  comments,
+  downloads,
+}) {
+  return `<li class="gallery-item">
+    <a class="gallery-link" href="${largeImageURL}">
+        <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
+    </a>
+    <div class="image-details">
+        <p>Likes </br> ${likes}</p>
+        <p>Views </br>  ${views}</p>
+        <p>Comments </br>  ${comments}</p>
+        <p>Downloads </br>  ${downloads}</p>
+    </div>
+    </li>`;
+}
+
+function noFoundMessage() {
+  iziToast.show({
+    position: 'topRight',
+    messageColor: 'white',
+    iconUrl: 'error.svg',
+    iconColor: 'white',
+    color: '#EF4040',
+    message:
+      'Sorry, there are no images matching your search query. Please try again!',
+  });
+  loader.classList.remove('is-visible');
+}
+
+function errorMessage() {
+  iziToast.show({
+    position: 'topRight',
+    messageColor: 'white',
+    iconUrl: 'error.svg',
+    iconColor: 'white',
+    color: '#EF4040',
+    message: 'Whoops, something went wrong!',
+  });
+  loader.classList.remove('is-visible');
+}
