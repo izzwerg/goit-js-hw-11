@@ -27,6 +27,7 @@ function imageSearch(e) {
         for (const image of images.hits) {
           markup += createMarkup(image);
         }
+        loader.classList.remove('is-visible');
         gallery.innerHTML = markup;
         const lightbox = new SimpleLightbox('.gallery a');
         lightbox.refresh();
@@ -63,15 +64,10 @@ function createMarkup({
   downloads,
 }) {
   return `<li class="gallery-item">
-    <a class="gallery-link" href="${largeImageURL}">
-        <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
-    </a>
-    <div class="image-details">
-        <p>Likes </br> ${likes}</p>
-        <p>Views </br>  ${views}</p>
-        <p>Comments </br>  ${comments}</p>
-        <p>Downloads </br>  ${downloads}</p>
-    </div>
+        <a class="gallery-link" href="${largeImageURL}">
+            <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
+        </a>
+        
     </li>`;
 }
 

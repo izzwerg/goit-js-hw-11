@@ -75,6 +75,34 @@
 
 .gallery {
   width: 1440px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  max-width: 1440px;
+  padding: 24px 156px;
+  margin: auto;
+  gap: 24px;
+  justify-content: center;
+}
+
+.gallery-item {
+  padding: 0;
+  width: 360px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-image {
+  object-fit: cover;
+  width: 360px;
+  height: 200px;
+  transition: transform 250ms ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.04);
 }
 
 .loader {
