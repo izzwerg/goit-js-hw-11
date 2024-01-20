@@ -20,7 +20,7 @@ function imageSearch(e) {
 
   getImages(searchTerm)
     .then(images => {
-      if ((images.hits == 0)) {
+      if (images.hits == 0) {
         noFoundMessage();
       } else {
         let markup = '';
@@ -33,7 +33,7 @@ function imageSearch(e) {
         lightbox.refresh();
       }
     })
-    .catch((error) => console.log(error))
+    .catch(error => console.log(error))
     .finally(() => form.reset());
 }
 
