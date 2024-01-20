@@ -52,7 +52,7 @@
 }
 
 .form-input:focus-visible {
-  border: 1px solid #4E75FF;
+  border: 1px solid #4e75ff;
   outline: none;
 }
 
@@ -91,6 +91,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .gallery-image {
@@ -100,8 +101,43 @@
   transition: transform 250ms ease-in-out;
 }
 
-.gallery-image:hover {
+.gallery-item:hover .gallery-image {
   transform: scale(1.04);
+}
+
+.gallery-details {
+  position: absolute;
+  bottom: -4px;
+  display: flex;
+  width: 376px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7511379551820728) 13%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.gallery-item:hover .gallery-details {
+  opacity: 1;
+}
+
+.detail {
+  width: 94px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.gallery-text {
+  color: antiquewhite;
 }
 
 .sl-wrapper {
@@ -133,24 +169,24 @@
   color: #808080;
   display: none;
 }
-  .loader:before,
-  .loader:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: inherit;
-    height: inherit;
-    border-radius: 50%;
-    transform: rotateX(70deg);
-    animation: 1s spin linear infinite;
-  }
-  .loader:after {
-    color: #4e75ff;
-    transform: rotateY(70deg);
-    animation-delay: .4s;
-  }
+.loader:before,
+.loader:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: 1s spin linear infinite;
+}
+.loader:after {
+  color: #4e75ff;
+  transform: rotateY(70deg);
+  animation-delay: 0.4s;
+}
 
 @keyframes rotate {
   0% {
@@ -173,28 +209,28 @@
 @keyframes spin {
   0%,
   100% {
-    box-shadow: .2em 0px 0 0px currentcolor;
+    box-shadow: 0.2em 0px 0 0px currentcolor;
   }
   12% {
-    box-shadow: .2em .2em 0 0 currentcolor;
+    box-shadow: 0.2em 0.2em 0 0 currentcolor;
   }
   25% {
-    box-shadow: 0 .2em 0 0px currentcolor;
+    box-shadow: 0 0.2em 0 0px currentcolor;
   }
   37% {
-    box-shadow: -.2em .2em 0 0 currentcolor;
+    box-shadow: -0.2em 0.2em 0 0 currentcolor;
   }
   50% {
-    box-shadow: -.2em 0 0 0 currentcolor;
+    box-shadow: -0.2em 0 0 0 currentcolor;
   }
   62% {
-    box-shadow: -.2em -.2em 0 0 currentcolor;
+    box-shadow: -0.2em -0.2em 0 0 currentcolor;
   }
   75% {
-    box-shadow: 0px -.2em 0 0 currentcolor;
+    box-shadow: 0px -0.2em 0 0 currentcolor;
   }
   87% {
-    box-shadow: .2em -.2em 0 0 currentcolor;
+    box-shadow: 0.2em -0.2em 0 0 currentcolor;
   }
 }
 
@@ -202,7 +238,7 @@
   display: block;
 }
 
-.iziToast>.iziToast-close {
+.iziToast > .iziToast-close {
   background: url(../public/close.png) no-repeat 50% 50%;
   background-size: 16px;
 }

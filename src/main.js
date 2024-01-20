@@ -33,6 +33,7 @@ function imageSearch(e) {
         lightbox.refresh();
       }
     })
+    .catch((error) => console.log(error))
     .finally(() => form.reset());
 }
 
@@ -67,7 +68,12 @@ function createMarkup({
         <a class="gallery-link" href="${largeImageURL}">
             <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
         </a>
-        
+        <div class="gallery-details">
+            <div class="detail"><img class="gallery-logo" src="like.png" /> <p class="gallery-text">${likes}</p></div>
+            <div class="detail"><img class="gallery-logo" src="viev.png" /> <p class="gallery-text">${views}</p></div>
+            <div class="detail"><img class="gallery-logo" src="comment.png" /> <p class="gallery-text">${comments}</p></div>
+            <div class="detail"><img class="gallery-logo" src="download.png" /> <p class="gallery-text">${downloads}</p></div>
+        </div>
     </li>`;
 }
 
@@ -80,18 +86,6 @@ function noFoundMessage() {
     color: '#EF4040',
     message:
       'Sorry, there are no images matching your search query. Please try again!',
-  });
-  loader.classList.remove('is-visible');
-}
-
-function errorMessage() {
-  iziToast.show({
-    position: 'topRight',
-    messageColor: 'white',
-    iconUrl: 'error.svg',
-    iconColor: 'white',
-    color: '#EF4040',
-    message: 'Whoops, something went wrong!',
   });
   loader.classList.remove('is-visible');
 }
