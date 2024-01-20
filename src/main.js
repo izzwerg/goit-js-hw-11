@@ -18,10 +18,8 @@ function imageSearch(e) {
   const form = e.currentTarget;
   const searchTerm = form.elements.searchTerm.value;
 
-  console.log(searchTerm);
   getImages(searchTerm)
     .then(images => {
-      console.log(images.hits);
       if ((images.hits == 0)) {
         noFoundMessage();
       } else {
@@ -34,7 +32,6 @@ function imageSearch(e) {
         lightbox.refresh();
       }
     })
-    .catch(errorMessage())
     .finally(() => form.reset());
 }
 
